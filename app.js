@@ -53,7 +53,7 @@ equalsBtn.addEventListener("click", calculate);
 
 decimalBtn.addEventListener("click", addDecimal);
 
-//event listener for keyboard input
+//event listeners for keyboard inputs
 // event listener for equals or enter keys
 
 addEventListener("keypress", function (e) {
@@ -86,20 +86,12 @@ addEventListener("keypress", function (e) {
 });
 
 function operation(e) {
-  // if (calcFirstNumber === 0) {
-  //   calcFirstNumber = Number(inputField[0].value);
-  //   calcOperator = e;
-  //   inputField[0].value = "";
-  //   console.log("calcFirstNumber:" + calcFirstNumber);
-  // } else {
   calcOperator = e;
   calcFirstNumber = Number(inputField[0].value);
   inputField[0].value = "";
   currentNumber = operators[calcOperator](calcFirstNumber, currentNumber);
   currentNumberDisplay.innerHTML = currentNumber;
 
-  // console.log(calcFirstNumber);
-  // console.log(calcOperator);
   console.log("currentNumber:" + currentNumber);
 }
 
@@ -107,23 +99,16 @@ function operation(e) {
 
 function calculate() {
   currentNumber = Number(inputField[0].value);
-  currentCalculation.push(currentNumber);
+
+  currentNumber = operators[calcOperator](calcFirstNumber, currentNumber);
+  currentNumberDisplay.innerHTML = currentNumber;
 
   inputField[0].value = "";
   console.log("calc function triggered");
-  console.log(currentNumber);
-  calculateSum(currentCalculation);
 }
 
 function addDecimal() {
   // inputField[0].value += 'decimal'; // cannot be parsed!?
-}
-
-// need a for loop to iterate over array and convert to calculation, push in current calculation array https://www.geeksforgeeks.org/evaluate-an-array-expression-with-numbers-and/
-function calculateSum() {
-  for (i in currentCalculation) {
-    console.log(currentCalculation[i]);
-  }
 }
 
 function clear() {
@@ -132,4 +117,5 @@ function clear() {
   calcSecondNumber = 0;
   calcOperator = "";
   inputField[0].value = "";
+  currentNumberDisplay.innerHTML = 0;
 }
